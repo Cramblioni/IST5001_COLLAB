@@ -1,0 +1,140 @@
+
+/* erm, css for the html idk what else to say*/
+
+
+
+:root { 
+
+    /*background variables*/
+    --main-gradient: linear-gradient(to bottom, rgb(248, 212, 218) 0%,
+    pink 10%,rgb(255, 120, 185) 50%, purple 100%);
+    --primary-colour: purple;
+    --secondary-colour:pink;
+    --text-colour: black;
+
+    /* button variables*/
+    --btn-bg: rgb(195, 98, 195);
+    --btn-hover: darkorchid;
+    --btn-text: white;
+    --btn-radius: 30px;
+    --btn-padding: 10px 20px;
+}
+
+
+body {
+    margin:0;
+    min-height:200vh;
+    background: var(--main-gradient)
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:100px;
+  padding: 10px 20px;
+  background: transparent;
+  position: fixed;
+  transition: background-color 0.3s ease;
+  z-index:9998;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.nav-logo {
+  margin-right: 150px;
+  margin-top: 25px;
+  width: auto;
+  max-height: 55px;
+  transform:scale(4);
+  transform-origin: center;
+}
+.nav-logo:hover {
+  transform:scale(4.2);
+}
+
+.navbar.scrolled {
+  background-color: rgb(44, 38, 44);
+  
+}
+
+.btn {
+  background: var(--btn-bg);
+  border-radius: 15px;
+  padding: var(--btn-padding);
+  cursor: pointer;
+  color:white;
+  transition: transform 0.2s ease;
+  height: 50px;
+  width: 150px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size:medium;
+  border-style: none;
+  margin-left:15px;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
+    transform:scale(1.1);
+}
+
+.btn:active {
+  background-color:rgb(192, 142, 216);
+  
+}
+
+#speech-bubble {
+  position: fixed;
+  top: 45px;
+  right: 280px;
+  background:white;
+  color:black;
+  padding:10px 15px;
+  border-radius:15px;
+  font-family:Arial;
+  font-size:14px;
+  opacity:0;
+  transform:translateY(10px);
+  transition:0.3 ease;
+  pointer-events: none;
+}
+
+#speech-bubble.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+.home-page {
+  position:relative;
+  height:500px;
+}
+
+.mascot_home {
+  position:absolute;
+  top:80%;
+  left:0px;
+  width:1000px;
+  transform:translateY(-50%);
+  height:auto;
+}
+
+.home_bubble {
+  position: absolute;
+  top:80%;
+  left:800px;
+  transform:translateY(-50%);
+  width:400px;
+  background:white;
+  padding:30px;
+  border-radius:25px;
+  font-family:Arial;
+}
+

@@ -1,0 +1,136 @@
+
+.sidebar {
+  position: fixed;
+  top: 115px;
+  left: 0;
+
+  width: 270px;
+  height: calc(100vh - 115px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  box-sizing:border-box;
+
+  font-family: Arial;
+  color: white;
+
+  /* purple glass theme */
+  background: linear-gradient(
+    180deg,
+    rgba(195, 98, 195, 0.6),
+    rgba(40, 20, 60, 0.55)
+  );
+
+  backdrop-filter: blur(14px);
+
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  transform: translateX(-105%);
+  transition: transform 0.3s ease;
+
+  z-index: 9999;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  padding-left:50px;
+  margin-bottom: 10px;
+  font-weight:large;
+
+  color: #450a4f;
+  letter-spacing: 0.5px;
+}
+
+.section {
+  border-radius: 12px;
+}
+
+.section-title {
+  cursor: pointer;
+  padding: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: all 0.2s ease;
+}
+
+.section-title:hover {
+  background: rgba(160, 90, 255, 0.25);
+  transform: translateX(3px);
+}
+
+.section-links {
+  max-height: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  padding-left: 10px;
+
+  transition: max-height 0.3s ease;
+}
+
+.section.open .section-links {
+  max-height: 500px;
+}
+
+
+.section-links a {
+  color: #f5f3ff;
+  text-decoration: none;
+
+  padding: 8px 10px;
+  margin-top: 4px;
+
+  border-radius: 8px;
+
+  transition: all 0.2s ease;
+}
+
+.section-links a:hover {
+  background: rgba(180, 120, 255, 0.25);
+  transform: translateX(5px);
+}
+
+.quiz-link {
+  margin-top: 8px;
+
+  background: linear-gradient(90deg, #a855f7, #7c3aed);
+  color: white;
+
+  font-weight: bold;
+  text-align: center;
+
+  border-radius: 10px;
+}
+
+.quiz-link:hover {
+  filter: brightness(1.1);
+  transform: scale(1.02);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  color: #8d26b0;
+}
+
+.section.open .arrow {
+  transform: rotate(180deg);
+}

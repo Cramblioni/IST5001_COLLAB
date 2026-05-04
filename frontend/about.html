@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="form.css">
+    
+</head>
+
+<body>
+
+</div>
+
+<div class="navbar">
+  <div id="speech-bubble">Hey!</div>
+  <div class="nav-left">
+    <button class="btn" id="sidebar-btn">☰</button>
+    <button onclick="location.href='index.html'"class="btn" id="home-btn">Home</button>
+    <button onclick="location.href='about.html'"class="btn" id="about-btn">About</button>
+    <button onclick="openAuth(); showSignup()" class="btn" id="signup-btn">Sign Up</button>
+    <button onclick="openAuth(); showLogin()" class="btn" id="signin-btn">Sign In</button>
+  </div>
+
+  <img src="mascot3.png" class="nav-logo">
+
+</div>
+<div class="overlay" id="overlay"></div>
+
+<div class="sidebar" id="sidebar">
+
+  <h2>Cyber Course</h2>
+
+  <div class="section">
+    <div class="section-title">
+      Introduction
+      <span class="arrow">▼</span>
+    </div>
+
+    <div class="section-links">
+      <a href="threats.html">What is Cyber Security?</a>
+      <a href="threats.html">Why it matters</a>
+      <a href="threats.html">Basic Safety Rules</a>
+
+      <a href="threats.html" class="quiz-link">Test Yourself</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      Cyber Threats
+      <span class="arrow">▼</span>
+    </div>
+
+    <div class="section-links">
+      <a href="threats.html">Social Engineering</a>
+      <a href="threats.html">Malware</a>
+      <a href="threats.html">Network Attacks</a>
+      <a href="threats.html">Other Types</a>
+
+      <a href="threats.html" class="quiz-link">Take the Quiz!</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      Staying Safe
+      <span class="arrow">▼</span>
+    </div>
+
+    <div class="section-links">
+      <a href="safety.html">Strong Passwords</a>
+      <a href="safety.html">Two-Factor Authentication</a>
+      <a href="safety.html">Safe Browsing</a>
+
+      <a href="safety.html" class="quiz-link">Test Your Knowledge!</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="auth-modal" id="authModal">
+  <div class="auth-box">
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+      <h2>Sign In</h2>
+      <input type="text" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+
+      <p>Don't have an account?
+        <span onclick="showSignup()">Sign up</span>
+      </p>
+    </div>
+
+    <!-- SIGNUP -->
+    <div id="signupForm" style="display:none;">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Create Account</button>
+
+      <p>Already have an account?
+        <span onclick="showLogin()">Sign in</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+<script src="anim.js"></script>
+</body>
+</html>
