@@ -11,7 +11,7 @@ if (!isset($_GET["id"])) {
     exit("Missing Quiz `id`");
 }
 $id = $_GET["id"];
-//header("Content-Type: application/json");
+header("Content-Type: application/json");
 
 // General conenction
 $conn = mysqli_connect("localhost", "Client", "magic", "CyberSecurityWebsite");
