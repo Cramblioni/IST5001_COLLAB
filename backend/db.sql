@@ -1,8 +1,6 @@
 CREATE DATABASE CyberSecurityWebsite;
-GO
 
 USE CyberSecurityWebsite;
-GO
 
 Create TABLE Users (
 	UserID INT PRIMARY KEY IDENTITY(1,1),
@@ -12,14 +10,12 @@ Create TABLE Users (
 	DateCreated DATETIME DEFAULT GETDATE()
 );
 
-GO
 
 CREATE TABLE Quiz (
 	QuizID INT PRIMARY KEY IDENTITY(1,1),
 	QuizTitle VARCHAR(100) NOT NULL,
 	Description VARCHAR(255)
 );
-GO
 
 CREATE TABLE Questions ( 
 	QuestionID INT PRIMARY KEY IDENTITY(1,1),
@@ -31,7 +27,6 @@ CREATE TABLE Questions (
 		REFERENCES Quiz(QuizID)
 		ON DELETE CASCADE
 );
-GO
 
 CREATE TABLE Answers (
 	AnswerID INT PRIMARY KEY IDENTITY(1,1),
@@ -43,7 +38,6 @@ CREATE TABLE Answers (
 		REFERENCES Questions(QuestionID)
 		ON DELETE CASCADE
 );
-GO
 
 CREATE TABLE UserResponses (
 	ResponseID INT PRIMARY KEY IDENTITY(1,1),
@@ -62,7 +56,6 @@ CREATE TABLE UserResponses (
 	FOREIGN KEY (SelectedAnswerID)
 		REFERENCES Answers(AnswerID)
 );
-GO
 
 CREATE TABLE Results (
 	ResultID INT PRIMARY KEY IDENTITY(1,1),
@@ -80,7 +73,6 @@ CREATE TABLE Results (
 	FOREIGN KEY (QuizID)
 		REFERENCES Quiz(QuizID)
 );
-GO
 
 INSERT INTO Quiz (QuizTitle,Description)
 VALUES 
