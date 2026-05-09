@@ -1,78 +1,73 @@
-CREATE DATABASE CyberSecurityWebsite;
+CREATE DATABASE IF NOT EXISTS `CyberSecurityWebsite`;
+USE `CyberSecurityWebsite`;
 
-USE CyberSecurityWebsite;
 
-Create TABLE Users (
-	UserID INT PRIMARY KEY IDENTITY(1,1),
-	Username VARCHAR(50) NOT NULL  UNIQUE,
-	Email VARCHAR(100) NOT NULL UNIQUE,
-	Password VARCHAR(255) NOT NULL,
-	DateCreated DATETIME DEFAULT GETDATE()
+Create TABLE IF NOT EXISTS `Users` (
+	`UserID` INT PRIMARY KEY AUTO_INCREMENT,
+	`Username` VARCHAR(50) NOT NULL  UNIQUE,
+	`Email` VARCHAR(100) NOT NULL UNIQUE,
+	`PASSWORD` VARCHAR(255) NOT NULL,
+	`DateCreated` DATETIME
 );
-
-
-CREATE TABLE Quiz (
-	QuizID INT PRIMARY KEY IDENTITY(1,1),
-	QuizTitle VARCHAR(100) NOT NULL,
-	Description VARCHAR(255)
+CREATE TABLE IF NOT EXISTS `Quiz` (
+	`QuizID` INT PRIMARY KEY AUTO_INCREMENT,
+	`QuizTitle` VARCHAR(100) NOT NULL,
+	`Description` VARCHAR(255)
 );
+CREATE TABLE IF NOT EXISTS `Questions` ( 
+    `QuestionID` INT PRIMARY KEY AUTO_INCREMENT,
+    `QuizID` INT NOT NULL,
+    `QuestionText` VARCHAR(500) NOT NULL,
+    `DifficultyLevel` VARCHAR(20),
 
-CREATE TABLE Questions ( 
-	QuestionID INT PRIMARY KEY IDENTITY(1,1),
-	QuizID INT NOT NULL,
-	QuestionText VARCHAR(500) NOT NULL,
-	DifficultyLevel VARCHAR(20),
-
-	FOREIGN KEY (QuizID)
-		REFERENCES Quiz(QuizID)
-		ON DELETE CASCADE
+    FOREIGN KEY (`QuizID`)
+        REFERENCES `Quiz`(`QuizID`)
+        ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS `Answers` (
+    `AnswerID` INT PRIMARY KEY AUTO_INCREMENT,
+    `QuestionID` INT NOT NULL,
+    `AnswerText` VARCHAR(255) NOT NULL,
+    `IsCorrect` BIT DEFAULT 0,
 
-CREATE TABLE Answers (
-	AnswerID INT PRIMARY KEY IDENTITY(1,1),
-	QuestionID INT NOT NULL,
-	AnswerText VARCHAR(255) NOT NULL,
-	IsCorrect BIT DEFAULT 0,
-
-	FOREIGN KEY (QuestionID)
-		REFERENCES Questions(QuestionID)
-		ON DELETE CASCADE
+    FOREIGN KEY (`QuestionID`)
+        REFERENCES `Questions`(`QuestionID`)
+        ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS `UserResponses` (
+    `ResponseID` INT PRIMARY KEY AUTO_INCREMENT,
+    `UserID` INT NOT NULL,
+    `QuestionID` INT NOT NULL,
+    `SelectedAnswerID` INT NOT NULL,
+    `TimeAnswered` DATETIME,
 
-CREATE TABLE UserResponses (
-	ResponseID INT PRIMARY KEY IDENTITY(1,1),
-	UserID INT NOT NULL,
-	QuestionID INT NOT NULL,
-	SelectedAnswerID INT NOT NULL,
-	TimeAnswered DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (`UserID`)
+        references `Users`(`UserID`)
+        ON DELETE CASCADE,
+        
+    FOREIGN KEY (`QuestionID`)
+        REFERENCES `Questions`(`QuestionID`),
 
-	FOREIGN KEY (UserID)
-		references Users(UserID)
-		ON DELETE CASCADE,
-		
-	FOREIGN KEY (QuestionID)
-		REFERENCES Questions(QuestionID),
-
-	FOREIGN KEY (SelectedAnswerID)
-		REFERENCES Answers(AnswerID)
+    FOREIGN KEY (`SelectedAnswerID`)
+        REFERENCES `Answers`(`AnswerID`)
 );
+CREATE TABLE IF NOT EXISTS `Results` (
+	`ResultID` INT PRIMARY KEY AUTO_INCREMENT,
+	`UserID` INT NOT NULL,
+	`QuizID` INT NOT NULL,
+	`Score` INT NOT NULL,
+	`TotalQuestions` INT NOT NULL,
+	`TimeCompleted` DATETIME,
 
-CREATE TABLE Results (
-	ResultID INT PRIMARY KEY IDENTITY(1,1),
-	UserID INT NOT NULL,
-	QuizID INT NOT NULL,
-	Score INT NOT NULL,
-	TotalQuestions INT NOT NULL,
-	TimeCompleted DATETIME DEFAULT GETDATE(),
 
-
-	FOREIGN KEY (UserID)
-		REFERENCES Users(UserID)
+	FOREIGN KEY (`UserID`)
+		REFERENCES `Users`(`UserID`)
 		ON DELETE CASCADE,
 
-	FOREIGN KEY (QuizID)
-		REFERENCES Quiz(QuizID)
+	FOREIGN KEY (`QuizID`)
+		REFERENCES `Quiz`(`QuizID`)
 );
+
 
 INSERT INTO Quiz (QuizTitle,Description)
 VALUES 
