@@ -1,0 +1,27 @@
+# getquiz
+
+## parameters
+-        `id` : the id of the quiz you want
+
+example
+```
+http://SITE_ADDRESS/api_getquiz.php?id=1
+```
+
+## return format
+encoding: JSON (application/json)
+structure:
+```
+Quiz:
+        title: text
+        description: text
+        questions: [Question]
+Question:
+        text: text
+        answers: [Answer]
+Answer:
+        text: text
+        correct: boolean (0|1)
+```
+
+
