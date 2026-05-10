@@ -7,7 +7,7 @@ Create TABLE IF NOT EXISTS `Users` (
 	`Username` VARCHAR(50) NOT NULL  UNIQUE,
 	`Email` VARCHAR(100) NOT NULL UNIQUE,
 	`PASSWORD` VARCHAR(255) NOT NULL,
-	`DateCreated` DATETIME
+	`DateCreated` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS `Quiz` (
 	`QuizID` INT PRIMARY KEY AUTO_INCREMENT,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `UserResponses` (
     `UserID` INT NOT NULL,
     `QuestionID` INT NOT NULL,
     `SelectedAnswerID` INT NOT NULL,
-    `TimeAnswered` DATETIME,
+    `TimeAnswered` DATETIME DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY (`UserID`)
         references `Users`(`UserID`)
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `Results` (
 	`QuizID` INT NOT NULL,
 	`Score` INT NOT NULL,
 	`TotalQuestions` INT NOT NULL,
-	`TimeCompleted` DATETIME,
+	`TimeCompleted` DATETIME DEFAULT CURRENT_TIMESTAMP,
 
 
 	FOREIGN KEY (`UserID`)
