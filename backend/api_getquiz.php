@@ -39,7 +39,7 @@ $quiz->questions = array();
 function getAnswers($conn, $question_id) {
     $answers = array();
     $answers_query = mysqli_prepare($conn,
-        "SELECT `AnswerText`, `IsCorrect` FROM `Answers` WHERE `QuestionID` = ?" 
+        "SELECT `AnswerID`, `AnswerText`, `IsCorrect` FROM `Answers` WHERE `QuestionID` = ?" 
     );
     $answers_query->bind_param("s", $question_id);
 
@@ -51,8 +51,9 @@ function getAnswers($conn, $question_id) {
     $answer_row = $answers_result->fetch_row();
     while ($answer_row !== null) {
         $answer = new stdClass();
-        $answer->text = $answer_row[0];
-        $answer->correct = $answer_row[1];
+        $answer->id = $answer_row[0];
+        $answer->text = $answer_row[1];
+        $answer->correct = $answer_row[2];
 
         $answers[] = $answer;
         $answer_row = $answers_result->fetch_row();
@@ -74,6 +75,7 @@ $questions_result = $questions_query->get_result();
 $question_row = $questions_result->fetch_row();
 while ($question_row !== null) {
     $question = new stdClass();
+    $question->id = $question_row[0];
     $question->text = $question_row[1];
     $question->difficulty = $question_row[2];
     $question->answers = getAnswers($conn, $question_row[0]);

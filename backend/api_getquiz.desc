@@ -17,9 +17,11 @@ Quiz:
         description: text
         questions: [Question]
 Question:
+        id: int
         text: text
         answers: [Answer]
 Answer:
+        id: int
         text: text
         correct: boolean (0|1)
 ```
