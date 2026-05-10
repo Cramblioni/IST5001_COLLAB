@@ -50,9 +50,14 @@ function getResult($conn, $user) {
         http_response_code(500); // Internal Server Error
         exit;
     }
-    $result = $query->get_result()->fetch_row();
+    $result = $query->get_result();
     header("Content-Type: application/json");
-    echo json_encode($result[0]);
+    if ($result->num_rows() < 1) {
+        echo "[]";
+        http_response_code(200); // Created
+        exit;
+    }
+    echo json_encode($result->fetch_row());
     http_response_code(200); // Created
     exit;
 }
