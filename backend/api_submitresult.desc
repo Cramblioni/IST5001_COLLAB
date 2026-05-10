@@ -1,24 +1,28 @@
 # submitresult
 
+## POST
+
 allows submitting a user's result to a single question. Works for the current 
 active user.
-Should be used with the `POST` http method
 
-## parameters
--        `id` : the id of the quiz you want
+### parameters
+-        `qid` : the id of the question being answered
+-        `aid` : the id of the answer chosen.
 
+Requires the cookie `user` to be set
 
-example
-```
-http://SITE_ADDRESS/api_getquiz.php?id=1
-```
+## GET
 
-## return format
+Gets the chosen answer or nothing if the user didn't answer the question.
 
-returns nothing (except error messages on error).
+### parameters
+-       `qid` : the id of the question you want the answer of
+
+Requires the cookie `user` to be set
 
 ## response codes
 
+- 200 : The response was returned successfully
 - 201 : The response was successfully created
 - 401 : No User cookie provided
 - 405 : Wrong method used
