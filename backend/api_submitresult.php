@@ -52,7 +52,7 @@ function getResult($conn, $user) {
     }
     $result = $query->get_result();
     header("Content-Type: application/json");
-    if ($result->num_rows() < 1) {
+    if ($result->num_rows < 1) {
         echo "[]";
         http_response_code(200); // Created
         exit;
